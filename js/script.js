@@ -2,6 +2,7 @@
 const selezionaLivello = document.getElementById("selezione-difficolta");
 const btnStart = document.getElementById("start-game");
 const board = document.getElementById("board");
+//const overlay = document.getElementById("overlay")
 
 const punti =document.querySelector(".punteggio")
 
@@ -12,26 +13,19 @@ let posizioneBombe =[] ; // definisco l'array a cui passo la posizione delle Bom
 
 
 
-
-
 btnStart.addEventListener("click", function () {
 
-    const livello = selezionaLivello.value;
+    faiLaGriglia();
 
+    let datoCelle = faiLaGriglia();
 
-    console.log("il livello scelto è ", livello);
+    generaGriglia(datoCelle);
 
-    const celle = numeroDiCelle(livello);
-
-    console.log(celle);
-
-    generaGriglia(celle);
-
-    posizioneBombe=generaBombe(numeroBombe, celle);
+    posizioneBombe=generaBombe(numeroBombe, datoCelle);
 
     console.log(posizioneBombe); 
 
-    
+     
 
 });
 

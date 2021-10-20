@@ -10,11 +10,11 @@
 function numeroDiCelle(livello) {
 
     let elementi;
-    livello=parseInt(livello);
-    
-if( livello===1) {elementi=100;}
-else if (livello===2) {elementi=81;}
-else if (livello===3) {elementi=49;}
+    livello = parseInt(livello);
+
+    if (livello === 1) { elementi = 100; }
+    else if (livello === 2) { elementi = 81; }
+    else if (livello === 3) { elementi = 49; }
 
 
     return elementi;
@@ -22,6 +22,22 @@ else if (livello===3) {elementi=49;}
 
 }
 
+
+function faiLaGriglia() {
+
+    const livello = selezionaLivello.value;
+
+    console.log("il livello scelto è ", livello);
+
+    const celle = numeroDiCelle(livello);
+
+    console.log(celle);
+
+
+
+    return celle;
+
+}
 
 /**
 *
@@ -46,13 +62,13 @@ function generaGriglia(NumeroCelle) {
         //const cell = `<div class='box' style='width: ${cellSize}%; height: ${cellSize}%'></div>`;
         const cella = document.createElement("div");
         cella.classList.add("boxCell");
-        cella.innerHTML=i+1; 
+        cella.innerHTML = i + 1;
         cella.style.width = DimensioneCelle + "%";
         cella.style.height = DimensioneCelle + "%";
         cella.addEventListener("click", cliccaSuCella);
 
         // Aggiungo le celle alla board
-       
+
         board.append(cella);
     }
 
@@ -64,33 +80,102 @@ function generaGriglia(NumeroCelle) {
 
 let risultato = 0;//variabile che si deve incrementare ogni volta che cliccando non esplode
 
+
+
 function cliccaSuCella() {
 
     let contatore = 0;
+
+
 
     const numeroDellaCellaCliccato = parseInt(this.textContent);
 
     if (posizioneBombe.includes(numeroDellaCellaCliccato)) {
         this.classList.add("bomba");
-        this.textContent= "";
+        this.textContent = "";
 
-        
-               
-      } else {
+
+
+        alert("sei esploso")
+
+        mostraBombe()
+
+
+
+    } else {
         this.classList.add("click");
         incrementaPunteggio();
+
+
+
+    }
+
+
+}
+
+
+
+function incrementaPunteggio() {
+
+
+
+    risultato = risultato + 1;
+    punti.innerHTML = risultato;
+
+    return risultato;
+
+}
+
+//funzione per mostrare tutte le bombe presenti
+
+
+function mostraBombe() {
+
+    posizioneBombe.sort()
+
+    console.log(posizioneBombe);
+
+    const container = document.querySelector(".container")
+
+    const doveBombe = document.createElement("div");
+    doveBombe.classList.add("dove-sono");
+
+    container.append(doveBombe);
+
+    
+
+    doveBombe.innerHTML=posizioneBombe; 
+
+
+
+/* 
+    const tuttiBox = document.querySelectorAll(".boxCell");
+
+    tuttiBox.forEach(boxCell => {
+
+        for ( let i=0; i<tuttiBox.length; i++) {
+
+            let dove = tuttiBox[i].innerHTML
+
+            
+
+           if(posizioneBombe.includes(tuttiBox[i].innerHTML)) {
+            this.classList.add("bomba");
+            this.textContent = "";
+
+           }
+
+    
+        }
         
-      }
+
+        }); */
+        
+    }
+
+ 
+          
+
+        
+    
        
-       
-}
-
-
-
-function incrementaPunteggio() { 
-
-   risultato = risultato +1 ;
-    punti.innerHTML=risultato; 
-
-}
-
