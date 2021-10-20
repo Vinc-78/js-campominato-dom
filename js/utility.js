@@ -58,16 +58,39 @@ function generaGriglia(NumeroCelle) {
 
 }
 
+
 // la funzione che permette di cambiare il colore aggiungendo o togliendo la classe click
 // vedi css
 
+let risultato = 0;//variabile che si deve incrementare ogni volta che cliccando non esplode
+
 function cliccaSuCella() {
+
+    let contatore = 0;
 
     const numeroDellaCellaCliccato = parseInt(this.textContent);
 
     if (posizioneBombe.includes(numeroDellaCellaCliccato)) {
         this.classList.add("bomba");
+        this.textContent= "";
+
+        
+               
       } else {
         this.classList.add("click");
+        incrementaPunteggio();
+        
       }
+       
+       
 }
+
+
+
+function incrementaPunteggio() { 
+
+   risultato = risultato +1 ;
+    punti.innerHTML=risultato; 
+
+}
+

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,49 +8,56 @@
     <title>Campo Minato</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-    
-       <nav >
-           <div class="nav-left">
-               <div class="logo">
-                   <img src="img/Logo.png" alt="logo boolean">
-               </div>
-               <div class="title">
-                   <h1> Campo Minato</h1>
-               </div>
-               
-           </div>
-           
-           <div class="nav-right">
-               <label for="selezione-difficolta">Difficoltà</label>
-               <select name="livello" id="selezione-difficolta">
-                   <option value="1">Facile</option>
-                   <option value="2">Medio</option>
-                   <option value="3">Difficile</option>
-               </select>
 
-               <button type="button" id="start-game">Play</button>
-           </div>
-           
-       </nav>
+    <nav>
+        <div class="nav-left">
+            <div class="logo">
+                <img src="img/Logo.png" alt="logo boolean">
+            </div>
+            <div class="title">
+                <h1> Campo Minato</h1>
+            </div>
+
+        </div>
+
+        <div class="nav-right">
+            <label for="selezione-difficolta">Difficoltà</label>
+            <select name="livello" id="selezione-difficolta">
+                <option value="1">Facile</option>
+                <option value="2">Medio</option>
+                <option value="3">Difficile</option>
+            </select>
+
+            <button type="button" id="start-game">Play</button>
+        </div>
+
+    </nav>
 
     <main>
 
         <div class="container">
-           
+
             <div id="board">
                 <!-- <div class="boxCell click">1</div> -->
             </div>
 
         </div>
-       
+
+        <div class="risultato">
+            <h2>Punti</h2>
+            <div class="punteggio">0</div>
+        </div>
+
 
     </main>
 
 
-    
+
     <script src="js/utility.js"></script>
     <script src="js/script.js"></script>
 </body>
+
 </html>

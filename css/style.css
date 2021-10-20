@@ -67,4 +67,30 @@ nav { height: 90px;
 
 #board .boxCell.click {background-color: rgb(100, 149, 237);}
 
-#board .boxCell.bomba {background-color: red;}
+#board .boxCell.bomba {background-color: red;
+                      }
+
+#board .boxCell.bomba::after{content: "B";
+                             color: white;}
+
+
+.risultato {position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: space-between;
+            width: 150px;
+            }
+
+
+.punteggio { text-align: center;
+             line-height: 28px;
+             border: 1px solid #808080a3;
+             color: red;
+             background-color: white;
+             height: 28px;
+             width: 60px;
+             border-radius: 5px;
+             font-size: x-large;
+             box-shadow: 3px 3px 8px grey;}
