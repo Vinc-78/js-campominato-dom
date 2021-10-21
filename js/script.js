@@ -14,6 +14,12 @@ let posizioneBombe =[] ; // definisco l'array a cui passo la posizione delle Bom
 
 
 btnStart.addEventListener("click", function () {
+//resetto punteggi e blocco su l'utilizzo della funzione cliccaSucelle contenuta in generaGriglia
+    gameOver=false;
+
+    punti.innerHTML = "0";
+
+    risultato = 0;
 
     faiLaGriglia();
 
@@ -34,6 +40,7 @@ function generaBombe(numeroBombe, celle) {
 
     const arrayBombe = [];
 
+
     while (arrayBombe.length < numeroBombe) {
 
         let posizioneBomba = Math.ceil(Math.random() * celle);
@@ -47,9 +54,6 @@ function generaBombe(numeroBombe, celle) {
           } else {
             // non faccio nulla
           }
-
-          
-
     }
 
     return arrayBombe;

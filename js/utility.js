@@ -22,6 +22,9 @@ function numeroDiCelle(livello) {
 
 }
 
+let NumTotCelle =0;
+
+
 
 function faiLaGriglia() {
 
@@ -33,7 +36,11 @@ function faiLaGriglia() {
 
     console.log(celle);
 
+    NumTotCelle=celle;
 
+    celleDisponibili = NumTotCelle - 16;
+
+    console.log(" il numero totale di celle disponibili create ", celleDisponibili)
 
     return celle;
 
@@ -80,13 +87,31 @@ function generaGriglia(NumeroCelle) {
 
 let risultato = 0;//variabile che si deve incrementare ogni volta che cliccando non esplode
 
+let gameOver=false; 
+
+
+let celleDisponibili
 
 
 function cliccaSuCella() {
 
     let contatore = 0;
 
+    
+    // se ho già cliccato o sono in gameCover la funzione si ferma
 
+    if((this.classList.contains(".bomba"))||(this.classList.contains("click"))||(gameOver)){
+
+        return;
+    }
+
+    // con questa condizione quando finiscono le celle cliccabili senza bomba il gioco si ferma
+    if(celleDisponibili===0){
+
+        alert("hai vinto !!! ")
+        return;
+
+    }
 
     const numeroDellaCellaCliccato = parseInt(this.textContent);
 
@@ -94,23 +119,24 @@ function cliccaSuCella() {
         this.classList.add("bomba");
         this.textContent = "";
 
-
-
         alert("sei esploso")
 
         mostraBombe()
 
+        gameOver=true;
 
+        console.log("gameOver è", gameOver)
 
     } else {
         this.classList.add("click");
         incrementaPunteggio();
 
+        celleDisponibili--; 
+        
+        console.log("Il numero di celle cliccabili sono",celleDisponibili)
 
-
+        console.log("gameOver è", gameOver)
     }
-
-
 }
 
 
@@ -131,7 +157,27 @@ function incrementaPunteggio() {
 
 function mostraBombe() {
 
-    posizioneBombe.sort()
+     // questa parte di codice seleziona tutte le celle le confronta con l'array delle bombe 
+    // dove trova corrispondenza da la classe che colora la bomba
+
+    const tuttiBox = board.querySelectorAll(".boxCell");
+
+    for (let i=0; i<posizioneBombe.length; i++ ){
+
+        const bomba = posizioneBombe[i]; 
+
+        const bombaCell = tuttiBox [bomba -1];
+
+        bombaCell.textContent = "";
+
+        bombaCell.classList.add("bomba");
+
+
+
+
+    /* Per aggiungere anche un overlay con le cordinate dele bombe
+
+     posizioneBombe.sort()
 
     console.log(posizioneBombe);
 
@@ -141,36 +187,13 @@ function mostraBombe() {
     doveBombe.classList.add("dove-sono");
 
     container.append(doveBombe);
-
-    
-
-    doveBombe.innerHTML=posizioneBombe; 
-
-
-
-/* 
-    const tuttiBox = document.querySelectorAll(".boxCell");
-
-    tuttiBox.forEach(boxCell => {
-
-        for ( let i=0; i<tuttiBox.length; i++) {
-
-            let dove = tuttiBox[i].innerHTML
-
-            
-
-           if(posizioneBombe.includes(tuttiBox[i].innerHTML)) {
-            this.classList.add("bomba");
-            this.textContent = "";
-
-           }
-
-    
-        }
+ */
+        
         
 
-        }); */
-        
+    }
+
+    
     }
 
  
